@@ -1,0 +1,27 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-9">
+      <div class="top-image">
+        <%= image_tag('cake_top.jpg', width: '100%', height: 'auto' ) %>
+        <p>
+          ようこそ、ながのCAKEへ</br>
+          このサイトは、ケーキ販売のECサイトになります。</br>
+          会員でない方も商品の閲覧はできますが、</br>
+          購入には会員登録が必要になります。
+        </p>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <h4>新着商品</h4>
+  </div>
+  <div class="row">
+    <% @items.each do |item| %>
+      <div class="col-sm-3">
+        <%= attachment_image_tag item,:image, format: 'jpeg', fallback: "no_image.jpg", size: "200x133", class: "img-responsive" %>
+        <%= item.name %> </br>
+        <%= item.add_tax_price.to_s(:delimited) %> 円
+      </div>
+    <% end %>
+  </div>
+</div>

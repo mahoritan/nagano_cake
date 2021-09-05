@@ -1,0 +1,23 @@
+<div class="container px-5">
+  <div class="row">
+    <h4 class="bg-light text-dark">　会員一覧　</h4>
+  </div>
+    <div class="row">
+      <table class="table">
+        <tr>
+          <th>会員ID</th>
+          <th>氏名</th>
+          <th>メールアドレス</th>
+        </tr>
+      <% @customers.each do |customer| %>
+          <tr>
+            <td><%= customer.id %></td>
+            <td><%= link_to customer.full_name, admin_customer_path(customer.id) %></td>
+            <td><%= customer.email %></td>
+          </tr>
+      <% end %>
+      </table>
+      </div>
+    <%= paginate @customers %>
+    </div>
+  </div>
