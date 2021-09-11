@@ -1,12 +1,36 @@
-<h2>商品詳細</h2>
-<%= attachment_image_tag @item, :image, format: 'jpeg', fallback: "no_image.jpg", size: "400x300" %>
-<h4>商品名</h4>
-  <%= @item.name %>
-<h4>商品説明</h4>
-  <%= @item.introduction %>
-<h4>ジャンル</h4>
-  <%= @item.genre.name %>
-<h4>税込価格(税抜価格)</h4>
-  <%= @item.add_tax_price.to_s(:delimited) %> 円（<%= @item.price %> ）円
-
-<%= link_to "編集する", edit_admin_item_path %>
+<div class="container">
+  <div class="row ml-5 mt-5">
+    <h4 class="bg-light text-dark">　商品詳細　</h4>
+  </div>
+  <div class="row mt-5">
+    <div class="col-sm-4 text-center">
+      <%= attachment_image_tag @item, :image, format: 'jpeg', fallback: "no_image.jpg", size: "250x167" %>
+    </div>
+    <div class="col-sm-8">
+      <table class="table table-borderless">
+        <tr>
+          <th class="font-weight-normal small">商品名</th>
+          <td><%= @item.name %></td>
+        </tr>
+        <tr>
+          <th class="font-weight-normal small">商品説明</th>
+          <td><%= @item.introduction %></td>
+        </tr>
+        <tr>
+          <th class="font-weight-normal small">ジャンル</th>
+          <td><%= @item.genre.name %></td>
+        </tr>
+        <tr>
+          <th class="font-weight-normal small">
+            税込価格</br>
+            (税抜価格)
+          </th>
+          <td><%= @item.add_tax_price.to_s(:delimited) %> 円（<%= @item.price %> ）円</td>
+        </tr>
+      </table>
+    </div>
+  </div>
+  <div class="row">
+    <%= link_to "　編集する　", edit_admin_item_path, class: 'btn btn-success mx-auto d-block' %>
+  </div>
+</div>

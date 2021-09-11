@@ -1,19 +1,11 @@
 <div class="container">
   <div class="row mt-5">
-    <h4 class="bg-light text-dark">　<%= @customer.full_name %>さんの会員情報編集　</h4>
+    <h4 class="bg-light text-dark">　会員情報編集　</h4>
   </div>
 
-  <%= form_with model:@customer,url: admin_customer_path(@customer.id), local:true do |f| %>
+  <%= form_with model:@customer,url: customers_path, local:true do |f| %>
 
-  <div class="row mb-3 mt-5">
-      <div class="col-sm-3 ">
-        <label　class="col-form-label">会員ID</label>
-      </div>
-      <div class="col-sm-9">
-        <%= @customer.id %>
-      </div>
-  </div>
-  <div class="row mb-3">
+  <div class="row mt-5 mb-3">
     <label class="col-sm-3 col-form-label">名前</label>
       <div class="col-sm-3">
         <%= f.text_field :last_name, autofocus: true, class: "form-control" %>
@@ -63,13 +55,14 @@
       <%= f.email_field :email, autocomplete: "email", class: "form-control" %>
     </div>
   </div>
+
   <div class="row">
-    <div class="offset-sm-3">
-      <div class="col-sm-9 actions">
-        <%= f.submit "編集する" %>
+    <div class="col-sm-5 offset-sm-3">
+        <%= f.submit "編集内容を保存", class: 'btn btn-success' %>
       </div>
+      <div class="col-sm-4">
+        <%= link_to "退会する", customers_unsubscribe_path, class: 'btn btn-danger' %>
     </div>
   </div>
-
 
 <% end %>
