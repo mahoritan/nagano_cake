@@ -10,11 +10,13 @@ Rails.application.routes.draw do
     get 'about' => 'homes#about'
     get 'customers' => 'customers#show'
     get 'customers/edit' => 'customers#edit'
-    patch 'customers' => 'customers#update'
     get 'customers/unsubscribe' => 'customers#unsubscribe'
+    patch 'customers' => 'customers#update'
     patch 'customers/withdraw' => 'customers#withdraw', as: 'customers_withdraw'
+    get 'orders/thanks' => 'orders#thanks'
     resources :addresses, except:[:show, :new]
     resources :items, only:[:index, :show]
+    resources :cart_items, only:[:index, :create, :update, :destroy]
   end
 
   devise_for :customers, controllers: {
