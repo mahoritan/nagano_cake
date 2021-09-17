@@ -16,7 +16,11 @@ Rails.application.routes.draw do
     get 'orders/thanks' => 'orders#thanks'
     resources :addresses, except:[:show, :new]
     resources :items, only:[:index, :show]
-    resources :cart_items, only:[:index, :create, :update, :destroy]
+    resources :cart_items, only:[:index, :create, :update, :destroy] do
+      collection do
+        delete 'destroy_all'
+      end
+    end
   end
 
   devise_for :customers, controllers: {
