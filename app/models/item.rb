@@ -2,6 +2,7 @@ class Item < ApplicationRecord
 
   belongs_to :genre
   has_many :cart_items, dependent: :destroy
+  has_many :order_details, dependent: :destroy
 
   attachment :image
 
@@ -9,3 +10,4 @@ class Item < ApplicationRecord
     (price * 1.1).floor
   end
 end
+

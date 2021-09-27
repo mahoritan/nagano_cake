@@ -16,7 +16,7 @@
       <div class="col-md-7 offset-md-5">
         <div class="form-inline">
           <%= form_with model: @cart_item, url: cart_items_path, local:true do |f| %>
-          <%= f.select :amount, *[1..5], {include_blank: '個数選択'}, {class: 'form-control col-md-6 mr-2' } %>
+          <%= f.select :amount, *[1..10], {include_blank: '個数選択'}, {class: 'form-control col-md-6 mr-2' } %>
           <%= f.hidden_field :item_id, :value => @item.id %>
           <%= f.submit "カートに入れる", class: "btn btn-success" %>
         </div>
