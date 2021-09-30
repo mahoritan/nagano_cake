@@ -28,15 +28,6 @@
   </div>
   <div class="row ml-4">
     <div class="form-group">
-      <%= f.radio_button :select_address, 1 %>
-      <%= f.label :select_address, Order.select_addresses_i18n[:registered_address] %></br>
-      <div class="ml-4 mb-2">
-        <%= f.select :address_id, options_from_collection_for_select(Address.all, :id, :full_address),{class: 'form-control'}%>
-      </div>
-    </div>
-  </div>
-  <div class="row ml-4">
-    <div class="form-group">
       <%= f.radio_button :select_address, 2 %>
       <%= f.label :select_address, Order.select_addresses_i18n[:new_address] %>
     </div>

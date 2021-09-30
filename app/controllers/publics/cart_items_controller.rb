@@ -1,4 +1,5 @@
 class Publics::CartItemsController < ApplicationController
+  before_action :authenticate_customer!
 
   def create
       @cart_item = CartItem.find_by(item_id: params[:cart_item][:item_id])
@@ -14,11 +15,12 @@ class Publics::CartItemsController < ApplicationController
   end
 
   def index
-    @cart_items = current_customer.cart_items.all
+    @cart_items = current_customer.cart_items
   end
 
   def update
     cart_item = CartItem.find(params[:id])
+    p cart_item
     cart_item.update(cart_item_params)
     redirect_to cart_items_path
   end

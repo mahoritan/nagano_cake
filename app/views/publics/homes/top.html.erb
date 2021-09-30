@@ -1,4 +1,4 @@
-<div class="container">
+<div class="container mb-5">
   <div class="row">
     <div class="col-md-9">
       <div class="top-image">
@@ -13,19 +13,22 @@
     </div>
   </div>
   <div class="row">
-    <h4>新着商品</h4>
+    <h4 class="font-weight-bold">新着商品</h4>
   </div>
   <div class="row">
     <% @items.each do |item| %>
       <div class="col-md-3">
-        <div class="card border border-0">
+        <div class="card border border-0 font-weight-bold">
           <%= attachment_image_tag item,:image, format: 'jpeg', fallback: "no_image.jpg", size: "200xauto", class: "img-responsive" %>
             <div class="card-body">
               <%= link_to item.name, item_path(item.id) %> </br>
-              <%= item.with_tax_price %> 円
+              <%= item.with_tax_price.to_s(:delimited) %> 円
             </div>
         </div>
       </div>
     <% end %>
+      <div class="col-md-3 offset-md-9 text-right">
+      <%= link_to "全ての商品を見る＞", items_path %>
+    </div>
   </div>
 </div>
