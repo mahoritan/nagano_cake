@@ -29,10 +29,13 @@
                     <%= link_to "会員一覧", admin_customers_path, class: 'btn btn-sm btn-outline-secondary text-nowrap mr-4' %>
                   </li>
                   <li class="nav-item">
+                    <%= link_to "注文履歴一覧", admin_root_path, class: 'btn btn-sm btn-outline-secondary text-nowrap mr-4' %>
+                  </li>
+                  <li class="nav-item">
                     <%= link_to "ジャンル一覧", admin_genres_path, class: 'btn btn-sm btn-outline-secondary text-nowrap mr-4' %>
                   </li>
                   <li class="nav-item">
-                    <%= link_to "ログアウト", destroy_customer_session_path, method: :delete, class: 'btn btn-sm btn-outline-secondary text-nowrap' %>
+                    <%= link_to "ログアウト", destroy_admin_session_path, method: :delete, class: 'btn btn-sm btn-outline-secondary text-nowrap' %>
                   </li>
                 <% elsif customer_signed_in? %>
                   <li class="nav-item">

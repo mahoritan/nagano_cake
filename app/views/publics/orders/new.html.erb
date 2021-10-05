@@ -1,4 +1,4 @@
-<div class="container">
+<div class="container mb-5">
   <div class="row mt-5 ml-5">
     <h4 class="bg-light text-dark">　注文情報入力　</h4>
   </div>
@@ -6,19 +6,21 @@
   <div class="row mt-3">
     <h5 class="font-weight-bold">支払方法</h5>
   </div>
+  <%= form_with model: @order, url: orders_confirm_path, method: :post, local:true do |f| %>
   <div class="row ml-4">
-    <%= form_with model: @order, url: orders_confirm_path , method: :post, local:true do |f| %>
-      <%= f.radio_button :payment_method, Order.payment_methods.key(0) %>
+    <div class="form-group">
+      <%= f.radio_button :payment_method, Order.payment_methods.key(0), checked: true %>
       <%= f.label :payment_method, Order.payment_methods_i18n[:credit_card] %></br>
       <%= f.radio_button :payment_method, Order.payment_methods.key(1) %>
       <%= f.label :payment_method, Order.payment_methods_i18n[:transfer] %>
+    </div>
   </div>
   <div class="row mt-3">
     <h5 class="font-weight-bold">お届け先</h5>
   </div>
   <div class="row ml-4">
     <div class="form-group">
-      <%= f.radio_button :select_address, 0 %>
+      <%= f.radio_button :select_address, 0, checked: true %>
       <%= f.label :select_address, Order.select_addresses_i18n[:home_address] %></br>
         <div class="ml-4 mb-2">
           〒<%= current_customer.postal_code %>　<%= current_customer.address %></br>
@@ -58,6 +60,6 @@
   </div>
   <div class="row mt-3">
     <%= f.submit '確認画面に進む', class: 'btn btn-primary mx-auto' %>
+    <% end %>
   </div>
-  <% end %>
 </div>

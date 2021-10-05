@@ -6,5 +6,8 @@ class Order < ApplicationRecord
   enum payment_method: { credit_card: 0, transfer: 1 }
   enum select_address: { home_address: 0, registered_address: 1, new_address: 2 }
 
+  validates :address, presence: true
+  validates :postal_code, presence: true
+  validates :name, presence: true
 
 end

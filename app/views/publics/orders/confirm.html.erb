@@ -1,4 +1,4 @@
-<div class="container">
+<div class="container mb-5">
   <div class="row mt-5 ml-5">
     <h4 class="bg-light text-dark">　注文情報確認　</h4>
   </div>
@@ -19,9 +19,9 @@
             <%= attachment_image_tag cart_item.item,:image, format: 'jpeg', fallback: "no_image.jpg", size: "50x33" %>
             <%= cart_item.item.name %>
           </td>
-          <td class="align-middle"><%= cart_item.item.with_tax_price %></td>
+          <td class="align-middle"><%= cart_item.item.with_tax_price.to_s(:delimited) %></td>
           <td class="align-middle"><%= cart_item.amount %></td>
-          <td class="align-middle"><%= cart_item.subtotal %></td>
+          <td class="align-middle"><%= cart_item.subtotal.to_s(:delimited) %></td>
           <% @sum += cart_item.subtotal %>
         <% end %>
       </table>
@@ -30,33 +30,32 @@
         <table class="table table-bordered">
           <tr>
             <th class="table-secondary">送料</th>
-            <td><%= @order.shipping_cost %></td>
+            <td><%= @order.shipping_cost.to_s(:delimited) %></td>
           </tr>
           <tr>
             <th class="table-secondary">商品合計</th>
-            <td><%= @sum %></td>
+            <td><%= @sum.to_s(:delimited) %></td>
           </tr>
           <tr>
             <th class="table-secondary">請求金額</th>
-            <td><%= @order.total_payment %></td>
+            <td><%= @order.total_payment.to_s(:delimited) %></td>
           </tr>
         </table>
       </div>
     </div>
     <div class="row mt-3">
       <h5 class="font-weight-bold mr-3">支払方法</h5>
-      <% if @order.payment_method == 0 %>
+      <% if @order.payment_method == "credit_card" %>
         <%= Order.payment_methods_i18n[:credit_card] %>
       <% else %>
         <%= Order.payment_methods_i18n[:transfer] %>
       <% end %>
     </div>
-    <div class="row mt-3">
+    <div class="row mt-3 mb-5">
       <h5 class="font-weight-bold mr-3">お届け先</h5>
         〒<%= @order.postal_code %> <%= @order.address %></br>
         <%= @order.name %>
     </div>
-    <div class="row">
       <%= form_with model: @order, local:true do |f| %>
         <%= f.hidden_field :total_payment, :value => @order.total_payment %>
         <%= f.hidden_field :shipping_cost, :value => @order.shipping_cost %>
@@ -65,7 +64,8 @@
         <%= f.hidden_field :address, :value => @order.address %>
         <%= f.hidden_field :name, :value => @order.name %>
         <%= f.hidden_field :customer_id, :value => current_customer.id %>
-        <%= f.submit "注文を確定する", class: 'btn btn-success mx-auto' %>
+    <div class="row">
+      <%= f.submit "注文を確定する", class: 'btn btn-success mx-auto' %>
       <% end %>
     </div>
 </div>

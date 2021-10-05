@@ -18,12 +18,12 @@
   <div class="row">
     <% @items.each do |item| %>
       <div class="col-md-3">
-        <div class="card border border-0 font-weight-bold">
-          <%= attachment_image_tag item,:image, format: 'jpeg', fallback: "no_image.jpg", size: "200xauto", class: "img-responsive" %>
-            <div class="card-body">
-              <%= link_to item.name, item_path(item.id) %> </br>
-              <%= item.with_tax_price.to_s(:delimited) %> 円
-            </div>
+        <%= link_to item_path(item.id) do %>
+          <%= attachment_image_tag item,:image, format: 'jpeg', fallback: "no_image.jpg", size: "200x133", class: "img-responsive mr-3" %>
+        <% end %>
+        <div class="card-body">
+          <%= item.name %> </br>
+          <%= item.with_tax_price.to_s(:delimited) %> 円
         </div>
       </div>
     <% end %>
